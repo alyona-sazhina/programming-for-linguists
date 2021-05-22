@@ -6,6 +6,7 @@ Implementation of the data structure "Stack"
 
 from typing import Iterable
 
+# change
 
 class Stack:
     """
