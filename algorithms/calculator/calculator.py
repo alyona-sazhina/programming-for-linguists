@@ -22,3 +22,17 @@ class ReversePolishNotationCalculator:
         :param rpn_expression: expression in Reverse Polish Notation Format
         :return: result of the expression
         """
+        for element in rpn_expression:
+            if isinstance(element, Op):
+                res = self._calculate_value(element)
+                self.stack.push(res)
+            else:
+                self.stack.push(element)
+        return self.stack.top().digit
+
+    def _calculate_value(self, operator: Op) -> Digit:
+        first = self.stack.top()
+        self.stack.pop()
+        second = self.stack.top()
+        self.stack.pop()
+        return operator(first, second)
